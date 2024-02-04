@@ -19,7 +19,7 @@ class GptScrap():
         Login_credential=True
         while True:
             my_email = "astroknestrok@gmail.com"
-            passw = "Aquatype1"
+            passw = "Aqua"
             # my_email = input("Gmail Id:-")
             # passw = input("Gmail Password:-")
             try:
