@@ -19,13 +19,13 @@ class GptScrap():
         Login_credential=True
         while True:
             my_email = "astroknestrok@gmail.com"
-            passw = "Aqua"
+            passw = "Aquatype1"
             # my_email = input("Gmail Id:-")
             # passw = input("Gmail Password:-")
             try:
                 self.driver.get('https://chat.openai.com')
                 time.sleep(4)
-                login=self.driver.find_element('xpath','/html/body/div[1]/div[1]/div[1]/div[4]/button[1]')
+                login=self.driver.find_element('xpath','//*[@id="__next"]/div[1]/div[2]/div[1]/div/div/button[1]')
                 login.click()
                 time.sleep(5)
                 google=self.driver.find_element('xpath','/html/body/div/main/section/div/div/div/div[4]/form[2]/button')
@@ -46,13 +46,9 @@ class GptScrap():
             except:
                 print('There is some Error')
     def formality(self):
-        next=self.driver.find_element('xpath','//*[@id="radix-:r8:"]/div/div/div[4]/button')
+        next=self.driver.find_element('xpath','/html/body/div[6]/div/div/div/div[2]/div/div[2]/button')
         next.click()
         time.sleep(1)
-        for i in range(0,2):
-            next=self.driver.find_element('xpath','//*[@id="radix-:r8:"]/div/div/div[4]/button[2]')
-            next.click()
-            time.sleep(1)
     def gpt_talk_verify(self):
         user_text=input('ask:- ')
         with open('./data/chat.txt','a') as file:
@@ -65,25 +61,26 @@ class GptScrap():
             gpt_input.send_keys(user_text)
             gpt_input=gpt_input.find_element(By.XPATH, "following-sibling::button")
             gpt_input.click()
-            time.sleep(5)
+            time.sleep(2)
             print('Please Wait For Response\n')
             while True:
                 elements=self.driver.find_elements(By.TAG_NAME,f'polyline')
                 temp=0
-                for element in elements:
-                    text = element.get_attribute("outerHTML")
-                    if str(text)=='<polyline points="1 4 1 10 7 10"></polyline>' or str(text)=='<polyline points="23 20 23 14 17 14"></polyline>':
-                        return True
-                    else:
-                         pass
+                # for element in elements:
+                #     text = element.get_attribute("outerHTML")
+                #     if str(text)=='<polyline points="1 4 1 10 7 10"></polyline>' or str(text)=='<polyline points="23 20 23 14 17 14"></polyline>':
+                #         return True
+                #     else:
+                #          pass
                 temp+=1
                 if temp==2:
                     print('The two most Powerful Warriors are Patience and Time.\nSo be Patience and say ("GptScrap take ur Time")\n\n\n\n')
                 time.sleep(5)
+                pass
     def gpt_says(self,i):
         with open('./data/chat.txt','a') as file:
             file.write(f"\nGptScrap Output on {self.date_today}\n")
-        element=self.driver.find_element(By.XPATH,f"/html/body/div[1]/div[2]/div/div/main/div[2]/div/div/div/div[{i}]/div/div[2]/div[1]/div/div")
+        element=self.driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/div[2]/main/div[2]/div[1]/div/div/div/div[{i}]/div/div/div[2]/div[2]/div[1]/div/div/p")
         text = element.get_attribute("outerHTML")
         soup = BeautifulSoup(text, 'html.parser')
         child_elements = soup.find("div").find_all()
@@ -109,10 +106,10 @@ class GptScrap():
                     file.write(f"{text_item}\n")
             else:
                 pass
-    def cookies_generator(self):
-        cookies = self.driver.get_cookies()
-        # Print the cookies
-        with open('./data/cookies/cookies_generated.json','a') as file:
-                    file.write(f'# Here is ur code on date {self.date_today}\n')
-                    file.write(f"{cookies}\n")
-        print(cookies)
+    # def cookies_generator(self):
+    #     cookies = self.driver.get_cookies()
+    #     # Print the cookies
+    #     with open('./data/cookies/cookies_generated.json','a') as file:
+    #                 file.write(f'# Here is ur code on date {self.date_today}\n')
+    #                 file.write(f"{cookies}\n")
+    #     print(cookies)
