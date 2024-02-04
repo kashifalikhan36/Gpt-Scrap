@@ -12,8 +12,8 @@ while True:
         token+=1
         if token%2 != 0:
             if gpt.gpt_talk_verify(data_no)==True:
-                data_no+=1
                 gpt.gpt_says(token,data_no)
+                data_no+=1
                 continue
             elif gpt.gpt_talk_verify()==False:
                 break
